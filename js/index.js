@@ -3,10 +3,12 @@ import { camera } from './camera.js'
 import { floor } from './floor.js'
 import { hastes } from './hastes.js'
 import './keyboard.js'
+import { light } from './light.js'
 import { renderer } from './renderer.js'
 import { hemisphereLight, sky } from './sky.js'
 import { text } from './text.js'
-import { light } from './light.js'
+
+window.THREE = THREE
 
 const scene = new THREE.Scene()
 

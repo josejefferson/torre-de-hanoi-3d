@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { alturaCilindro, cilindro } from './geometry.js'
 import { amarelo, azul, roxo, verde, vermelho, cinza } from './materials.js'
+import { animateMeshPosition } from './animate.js'
 
 const MATERIAIS_COLORIDOS = [roxo, azul, verde, amarelo, vermelho]
 
@@ -32,6 +33,7 @@ export class Haste {
       throw new Error('O elemento a ser inserido é maior que o elemento no topo da haste')
     }
 
+    // animateMeshPosition(element.mesh, element.mesh.position.clone().setY(-alturaCilindro / 2 + 1 + this.size() * 2))
     element.mesh.position.setY(-alturaCilindro / 2 + 1 + this.size() * 2)
     this.mesh.add(element.mesh)
     this.items.push(element)
