@@ -7,15 +7,15 @@ camera.position.z = 10
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
-camera.position.x = +localStorage.getItem('camera.position.x') ?? camera.position.x
-camera.position.y = +localStorage.getItem('camera.position.y') ?? camera.position.y
-camera.position.z = +localStorage.getItem('camera.position.z') ?? camera.position.z
-camera.rotation.x = +localStorage.getItem('camera.rotation.x') ?? camera.rotation.x
-camera.rotation.y = +localStorage.getItem('camera.rotation.y') ?? camera.rotation.y
-camera.rotation.z = +localStorage.getItem('camera.rotation.z') ?? camera.rotation.z
-controls.target.x = +localStorage.getItem('controls.target.x') ?? controls.target.x
-controls.target.y = +localStorage.getItem('controls.target.y') ?? controls.target.y
-controls.target.z = +localStorage.getItem('controls.target.z') ?? controls.target.z
+camera.position.x = +localStorage.getItem('camera.position.x') || camera.position.x
+camera.position.y = +localStorage.getItem('camera.position.y') || camera.position.y
+camera.position.z = +localStorage.getItem('camera.position.z') || camera.position.z
+camera.rotation.x = +localStorage.getItem('camera.rotation.x') || camera.rotation.x
+camera.rotation.y = +localStorage.getItem('camera.rotation.y') || camera.rotation.y
+camera.rotation.z = +localStorage.getItem('camera.rotation.z') || camera.rotation.z
+controls.target.x = +localStorage.getItem('controls.target.x') || controls.target.x
+controls.target.y = +localStorage.getItem('controls.target.y') || controls.target.y
+controls.target.z = +localStorage.getItem('controls.target.z') || controls.target.z
 
 window.camera = camera
 
