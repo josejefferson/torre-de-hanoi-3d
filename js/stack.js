@@ -33,7 +33,7 @@ export class Haste {
     }
 
     this.mesh.add(element.mesh)
-    gsap.to(element.mesh.position, { duration: 0.3, y: -alturaCilindro / 2 + 1 + this.size() * 2 })
+    gsap.to(element.mesh.position, { duration: 1, y: -alturaCilindro / 2 + 1 + this.size() * 2, ease: 'bounce' })
     this.items.push(element)
   }
 
