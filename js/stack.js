@@ -41,6 +41,7 @@ export class Haste {
 
   pop() {
     const item = this.items.pop()
+    // animateMeshPosition(item.mesh, item.mesh.position.clone().setY(11))
     item.mesh.position.setY(11)
     return item
   }
