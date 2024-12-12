@@ -19,7 +19,10 @@ function handleKeyUp(event) {
   } else {
     // Flutua a rosquinha para outra haste
     rosquinhaSelecionadaPos = index
+    const currentPos = rosquinhaSelecionada.mesh.getWorldPosition(new THREE.Vector3())
     window.hastes[index].mesh.add(rosquinhaSelecionada.mesh)
+    rosquinhaSelecionada.mesh.position.setX(rosquinhaSelecionada.mesh.worldToLocal(currentPos).x)
+    gsap.to(rosquinhaSelecionada.mesh.position, { duration: 0.3, x: 0 })
   }
 }
 
