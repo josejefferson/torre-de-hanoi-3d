@@ -3,8 +3,22 @@ import { Haste, Rosquinha } from './stack.js'
 export const hastes = [new Haste(-1), new Haste(0), new Haste(1)]
 window.hastes = hastes
 
-hastes[0].push(new Rosquinha(4))
-hastes[0].push(new Rosquinha(3))
-hastes[0].push(new Rosquinha(2))
-hastes[0].push(new Rosquinha(1))
-hastes[0].push(new Rosquinha(0))
+export let numeroRosquinhas = prompt('Digite o número de rosquinhas')
+
+export async function generate() {
+  hastes[0].clear()
+  hastes[1].clear()
+  hastes[2].clear()
+
+  if (!numeroRosquinhas) {
+    numeroRosquinhas = 5
+  } else {
+    numeroRosquinhas = Number(numeroRosquinhas)
+  }
+
+  Haste.Y_FLUTUANTE = Math.max(11, numeroRosquinhas * 2)
+
+  for (let i = numeroRosquinhas - 1; i >= 0; i--) {
+    hastes[0].push(new Rosquinha(i))
+  }
+}

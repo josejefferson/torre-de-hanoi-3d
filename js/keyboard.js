@@ -1,11 +1,17 @@
-let rosquinhaSelecionada = null
+import { hastes } from './hastes.js'
+import { animarRosquinhaFlutuante } from './helpers.js'
+import { resolver } from './resolver.js'
+
+export let rosquinhaSelecionada = null
 let rosquinhaSelecionadaPos = null
 
 function handleKeyUp(event) {
+  if (event.key === 'r') return resolver()
+
   const index = +event.key - 1
   if (isNaN(index)) return
 
-  const haste = window.hastes[index]
+  const haste = hastes[index]
   if (!haste) return
 
   if (rosquinhaSelecionada === null) {
@@ -14,15 +20,17 @@ function handleKeyUp(event) {
     rosquinhaSelecionadaPos = index
   } else if (rosquinhaSelecionadaPos === index) {
     // Insere a rosquinha na haste
-    haste.push(rosquinhaSelecionada)
-    rosquinhaSelecionada = null
+    try {
+      haste.push(rosquinhaSelecionada)
+      rosquinhaSelecionada = null
+    } catch {
+      // Animação quando não pode colocar a rosquinha na haste
+      gsap.to(rosquinhaSelecionada.mesh.position, { y: '-=2', duration: 0.1, yoyo: true, repeat: 1 })
+    }
   } else {
     // Flutua a rosquinha para outra haste
     rosquinhaSelecionadaPos = index
-    const currentPos = rosquinhaSelecionada.mesh.getWorldPosition(new THREE.Vector3())
-    window.hastes[index].mesh.add(rosquinhaSelecionada.mesh)
-    rosquinhaSelecionada.mesh.position.setX(rosquinhaSelecionada.mesh.worldToLocal(currentPos).x)
-    gsap.to(rosquinhaSelecionada.mesh.position, { duration: 0.3, x: 0, ease: 'back.out' })
+    animarRosquinhaFlutuante(rosquinhaSelecionada, hastes[index])
   }
 }
 

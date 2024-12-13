@@ -18,6 +18,8 @@ export class Rosquinha {
 }
 
 export class Haste {
+  static Y_FLUTUANTE = 11
+
   constructor(index) {
     const mesh = new THREE.Mesh(cilindro, cinza)
     mesh.position.set(index * 20, alturaCilindro / 2, 0)
@@ -39,7 +41,7 @@ export class Haste {
 
   pop() {
     const item = this.items.pop()
-    gsap.to(item.mesh.position, { duration: 0.3, y: 11 })
+    gsap.to(item.mesh.position, { duration: 0.3, y: Haste.Y_FLUTUANTE })
     return item
   }
 
@@ -56,6 +58,9 @@ export class Haste {
   }
 
   clear() {
+    for (const item of this.items) {
+      this.mesh.remove(item.mesh)
+    }
     this.items = []
   }
 }
